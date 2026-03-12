@@ -1817,11 +1817,23 @@
         <span class="upsell-price">$9</span>
         <span class="upsell-price-label">one-time</span>
       </div>
-      <button class="btn-upsell" onclick="alert('Payment integration goes here — Stripe, Gumroad, or Lemon Squeezy')">
+      <button class="btn-upsell" onclick="handleCheckout('price_1TAEd3A0zmq2qXSxvV5TSadR')">
         Download My Rate Card →
       </button>
       <div class="upsell-guarantee">🔒 Instant delivery</div>
     </div>
+
+<script>
+async function handleCheckout(priceId) {
+  const res = await fetch('/api/checkout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ priceId })
+  });
+  const data = await res.json();
+  if (data.url) window.location.href = data.url;
+}
+</script>
 
     <!-- ── EMAIL CAPTURE ── -->
     <div class="email-capture">

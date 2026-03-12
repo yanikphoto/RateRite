@@ -1359,6 +1359,66 @@
         <!-- Hidden select keeps value for JS compatibility -->
         <select id="industry" style="display:none">
           <option value="dev_fullstack" selected>Full-Stack Development</option>
+          <option value="dev_frontend">Front-End Development</option>
+          <option value="dev_backend">Back-End / API Development</option>
+          <option value="dev_mobile">Mobile App Development</option>
+          <option value="dev_ai">AI / Machine Learning</option>
+          <option value="dev_devops">DevOps / Cloud Engineering</option>
+          <option value="dev_cyber">Cybersecurity</option>
+          <option value="dev_data">Data Engineering / Analytics</option>
+          <option value="design_ux">UX / Product Design</option>
+          <option value="design_graphic">Graphic / Brand Design</option>
+          <option value="design_motion">Motion Graphics / Animation</option>
+          <option value="design_3d">3D Design / Modelling</option>
+          <option value="design_web">Web Design</option>
+          <option value="writing_copy">Copywriting / Sales Copy</option>
+          <option value="writing_content">Content Writing / Blogging</option>
+          <option value="writing_technical">Technical Writing</option>
+          <option value="writing_medical">Medical Writing</option>
+          <option value="writing_ghostwriting">Ghostwriting</option>
+          <option value="writing_editing">Editing / Proofreading</option>
+          <option value="creator_strategy">Social Media Strategy</option>
+          <option value="creator_management">Social Media Management</option>
+          <option value="creator_ugc">UGC / Content Creator</option>
+          <option value="creator_influencer">Influencer Marketing</option>
+          <option value="creator_podcast">Podcast Production</option>
+          <option value="creator_youtube">YouTube / Video Content</option>
+          <option value="mkt_seo">SEO Consulting</option>
+          <option value="mkt_paid">Paid Ads / PPC</option>
+          <option value="mkt_email">Email Marketing</option>
+          <option value="mkt_growth">Growth Hacking / CRO</option>
+          <option value="mkt_pr">PR / Communications</option>
+          <option value="mkt_brand">Brand Strategy</option>
+          <option value="biz_strategy">Business Strategy</option>
+          <option value="biz_ops">Operations Consulting</option>
+          <option value="biz_hr">HR / Talent Consulting</option>
+          <option value="biz_legal">Legal / Compliance</option>
+          <option value="biz_pm">Project Management</option>
+          <option value="biz_ecom">E-Commerce Consulting</option>
+          <option value="fin_cfo">Fractional CFO</option>
+          <option value="fin_bookkeeping">Bookkeeping / Accounting</option>
+          <option value="fin_tax">Tax Advisory</option>
+          <option value="fin_invest">Investment / Financial Planning</option>
+          <option value="fin_crypto">Crypto / Web3 Finance</option>
+          <option value="health_telehealth">Telehealth Consulting</option>
+          <option value="health_nursing">Freelance Nursing / Clinical</option>
+          <option value="health_coaching">Health & Wellness Coaching</option>
+          <option value="health_nutrition">Nutrition / Dietetics</option>
+          <option value="health_mentalhealth">Mental Health / Therapy</option>
+          <option value="health_writing">Medical / Health Writing</option>
+          <option value="edu_elearning">eLearning / Instructional Design</option>
+          <option value="edu_tutoring">Tutoring / Academic Coaching</option>
+          <option value="edu_corporate">Corporate Training</option>
+          <option value="edu_curriculum">Curriculum Development</option>
+          <option value="media_photo">Photography</option>
+          <option value="media_video">Video Production</option>
+          <option value="media_editing">Video Editing</option>
+          <option value="media_audio">Audio Engineering / Music</option>
+          <option value="media_voiceover">Voiceover</option>
+          <option value="other_va">Virtual Assistant</option>
+          <option value="other_translation">Translation / Localization</option>
+          <option value="other_research">Market Research / Analyst</option>
+          <option value="other">Other / Not Listed</option>
         </select>
         <div class="industry-wrap" id="industryWrap">
           <button type="button" class="industry-trigger" id="industryTrigger" onclick="toggleIndustryDropdown()">
@@ -2393,8 +2453,8 @@ document.addEventListener('DOMContentLoaded', initCitySearch);
 
 // ── MAILERLITE CONFIG ──
 // Replace these with your real values from MailerLite
-const MAILERLITE_API_KEY = 'YOUR_MAILERLITE_API_KEY_HERE';
-const MAILERLITE_GROUP_ID = 'YOUR_GROUP_ID_HERE';
+const MAILERLITE_API_KEY = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiZTdiYzdlODMxODZmZTE0YWU4ZDQzZWU1NjBlNmI1YTdjYjFmM2QyODFjZWFmNzYyOTBkOGJlMmU1ZWZkNjZlNWY5NGM4NGMyNmIzZjg2NDYiLCJpYXQiOjE3NzMzMjU4MTcuNDc2MzgzLCJuYmYiOjE3NzMzMjU4MTcuNDc2Mzg4LCJleHAiOjQ5Mjg5OTk0MTcuNDY5OTgzLCJzdWIiOiIyMjA0MTMxIiwic2NvcGVzIjpbXX0.c_90vJYsLRHAhqRqlniT8PnHUpDp2jn4ZnZs68bWA56Z4tDREWhPef0RqroQAX22aG2EZIhPRrLy2gHxz4QtQ42XfL1xBElTUIbw9APscMlmaRzWGjlBsI5vB7avpd0Re_K7QvwUQMf4xv1OFY1qREV9RY_2IEm6wUUu7Zvl2CgxnPYbhEYFH2YF9hNqxx2u-T7567X72fVruTK0F96yiAqUSxa9BiZ_xiNfX8uiPYT8Op6fEwbVEX-_r7C_Z6aJ1KbS0ZqG-av4yKAic-TYJkmQc18d56FTNGRK2EgJ3e2um2_4xLEz32R32ZfVDBt6-wFe3W9eSeMfg8WV0m3jSwnkp66CPcrd_G-fE-evRU2Fi_t1t38lNpyND1uhJieD1byNzSOmaTwbEigzULK_hLc4ZEa_dEKQ3cH4hS7kSkr4p4Tiz0gaUTzCX56_xCrcLzaBr6Ex1VaUB0Er4WhOn4YilM0XcK3yA66_6xC0LBLwtaLCDNhIXyE1kTLbCfkYpBUsZ7w9uLSsBOgRnrcxZ9onm7E4YzNiw8cGMwuQ6Cp4vuTiNbcf1cW2b8GFDxeSRNq3kfoabmwkrBRN7CHJfQK33dfcGx6qEXkzhf62mD8NDTikKrxnOTC92ho9pXSvgBiMa7FMvB-whgNEoC99ArFbOiPhWKjYBdN8l-RzXo8';
+const MAILERLITE_GROUP_ID = '181745622366291633';
 
 // ── EMAIL SUBSCRIPTION ──
 async function subscribeEmail() {
@@ -2947,7 +3007,7 @@ function calculate() {
   const taxRate     = parseFloat(document.getElementById('taxRate').value) / 100;
   const hasBuffer   = document.getElementById('profitBuffer').checked;
   const hasHealth   = document.getElementById('healthInsurance').checked;
-  const industry    = document.getElementById('industry').value;
+  const industry    = document.getElementById('industry').value || 'dev_fullstack';
   const expLvl      = document.getElementById('experience').value;
   const locationMultiplier  = parseFloat(document.getElementById('locationValue').value) || 1.0;
   const industryMultiplier  = industryMultipliers[industry] || 1.0;
@@ -3014,7 +3074,7 @@ function calculate() {
   setColor('mult-location', locationMultiplier);
 
   // ── BENCHMARK ──
-  const bench     = benchmarks[industry];
+  const bench     = benchmarks[industry] || benchmarks['dev_fullstack'] || benchmarks['other'];
   const benchLow  = bench.low;
   const benchHigh = bench.expert;
 

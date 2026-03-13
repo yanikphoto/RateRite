@@ -348,11 +348,12 @@ module.exports = async (req, res) => {
   const html = render(formData);
 
   // 4. Launch Puppeteer and generate PDF
+  const executablePath = await chromium.executablePath();
   const browser = await puppeteer.launch({
-    args: chromium.args,
-    defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath(),
-    headless: chromium.headless,
+    args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+    defaultViewport: { width: 794, height: 1123 },
+    executablePath,
+    headless: 'new',
   });
 
   const page = await browser.newPage();

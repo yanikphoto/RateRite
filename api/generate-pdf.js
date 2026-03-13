@@ -1,6 +1,4 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const chromium = require('@sparticuz/chromium-min');
-const puppeteer = require('puppeteer-core');
 
 // ─── TEMPLATES ────────────────────────────────────────────────────────────────
 
@@ -347,25 +345,29 @@ module.exports = async (req, res) => {
   const render = templateMap[formData.template] || renderExecutiveDark;
   const html = render(formData);
 
-  // 4. Launch Puppeteer and generate PDF
-  const executablePath = await chromium.executablePath(
-    'https://github.com/Sparticuz/chromium/releases/download/v131.0.0/chromium-v131.0.0-pack.tar'
+  // 4. Generate PDF via Browserless
+  const browserlessRes = await fetch(
+    `https://chrome.browserless.io/pdf?token=${process.env.BROWSERLESS_TOKEN}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        html,
+        options: {
+          printBackground: true,
+          width: '794px',
+          height: '1123px',
+        }
+      })
+    }
   );
-  const browser = await puppeteer.launch({
-    args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-    defaultViewport: { width: 794, height: 1123 },
-    executablePath,
-    headless: 'new',
-  });
 
-  const page = await browser.newPage();
-  await page.setContent(html, { waitUntil: 'networkidle0' });
-  const pdf = await page.pdf({
-    width: '794px',
-    height: '1123px',
-    printBackground: true,
-  });
-  await browser.close();
+  if (!browserlessRes.ok) {
+    const err = await browserlessRes.text();
+    throw new Error(`Browserless error: ${err}`);
+  }
+
+  const pdf = Buffer.from(await browserlessRes.arrayBuffer());
 
   // 5. Return PDF
   res.setHeader('Content-Type', 'application/pdf');

@@ -866,13 +866,28 @@
 
   function buildReview() {
     const labels = { 'executive-dark':'Executive Dark', 'clean-minimal':'Clean Minimal', 'bold-editorial':'Bold Editorial' };
+    const services = [...document.querySelectorAll('#services-container .service-tag.selected')].map(el => el.dataset.value || el.textContent.trim());
+    const custom = document.getElementById('f-custom-service').value.trim();
+    if (custom) services.push(custom);
     const fields = [
-      ['Template', labels[selectedTemplate]],
-      ['Name', document.getElementById('f-name').value],
-      ['Title', document.getElementById('f-title').value],
-      ['Hourly Rate', document.getElementById('f-hourly').value],
-      ['Day Rate', document.getElementById('f-day').value],
+      ['Template',         labels[selectedTemplate]],
+      ['Name',             document.getElementById('f-name').value],
+      ['Title',            document.getElementById('f-title').value],
+      ['Email',            document.getElementById('f-email').value],
+      ['Website',          document.getElementById('f-website').value],
+      ['Phone',            document.getElementById('f-phone').value],
+      ['Location',         document.getElementById('f-location').value],
+      ['Hourly Rate',      document.getElementById('f-hourly').value],
+      ['Day Rate',         document.getElementById('f-day').value],
+      ['Half Day',         document.getElementById('f-halfday').value],
+      ['Project Minimum',  document.getElementById('f-projmin').value],
       ['Monthly Retainer', document.getElementById('f-retainer').value],
+      ['Rush Rate',        document.getElementById('f-rush').value],
+      ['Services',         services.join(', ')],
+      ['Deposit',          document.getElementById('f-deposit').value],
+      ['Payment Terms',    document.getElementById('f-payment-terms').value],
+      ['Revisions',        document.getElementById('f-revisions').value],
+      ['Valid For',        document.getElementById('f-validity').value],
     ].filter(([,v]) => v);
     document.getElementById('review-summary').innerHTML = fields.map(([l,v]) =>
       `<div class="review-row"><span class="review-label">${l}</span><span class="review-value">${v}</span></div>`

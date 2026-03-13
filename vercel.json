@@ -1,4 +1,8 @@
 {
+  "rewrites": [
+    { "source": "/create", "destination": "/create.html" },
+    { "source": "/success", "destination": "/success.html" }
+  ],
   "functions": {
     "api/generate-pdf.js": {
       "maxDuration": 30

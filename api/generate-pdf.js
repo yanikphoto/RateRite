@@ -1,5 +1,5 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const chromium = require('@sparticuz/chromium');
+const chromium = require('@sparticuz/chromium-min');
 const puppeteer = require('puppeteer-core');
 
 // ─── TEMPLATES ────────────────────────────────────────────────────────────────
@@ -348,7 +348,9 @@ module.exports = async (req, res) => {
   const html = render(formData);
 
   // 4. Launch Puppeteer and generate PDF
-  const executablePath = await chromium.executablePath();
+  const executablePath = await chromium.executablePath(
+    'https://github.com/Sparticuz/chromium/releases/download/v131.0.0/chromium-v131.0.0-pack.tar'
+  );
   const browser = await puppeteer.launch({
     args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
     defaultViewport: { width: 794, height: 1123 },

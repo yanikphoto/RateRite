@@ -1817,21 +1817,22 @@
         <span class="upsell-price">$9</span>
         <span class="upsell-price-label">one-time</span>
       </div>
-      <button class="btn-upsell" onclick="handleCheckout('price_1TAEd3A0zmq2qXSxvV5TSadR')">
-        Download My Rate Card →
+      <button class="btn-upsell" onclick="goToCreate()">
+      Download My Rate Card →
       </button>
       <div class="upsell-guarantee">🔒 Instant delivery</div>
     </div>
 
 <script>
-async function handleCheckout(priceId) {
-  const res = await fetch('/api/checkout', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ priceId })
+function goToCreate() {
+  const params = new URLSearchParams({
+    hourly:   document.getElementById('heroRate')?.textContent?.replace(/[^0-9.]/g,'') || '',
+    day:      document.getElementById('dayRate')?.textContent?.replace(/[^0-9.]/g,'') || '',
+    retainer: document.getElementById('monthlyRetainer')?.textContent?.replace(/[^0-9.]/g,'') || '',
+    location: document.getElementById('cityInput')?.value || '',
+    industry: document.getElementById('industry')?.value || '',
   });
-  const data = await res.json();
-  if (data.url) window.location.href = data.url;
+  window.location.href = '/create?' + params.toString();
 }
 </script>
 

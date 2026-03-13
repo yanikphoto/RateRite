@@ -224,6 +224,7 @@
     }
     .field textarea { resize: vertical; min-height: 72px; }
     .field .hint { font-size: 0.73rem; color: var(--muted); }
+    .field input::placeholder, .field textarea::placeholder { color: #c0ccc9; }
 
     /* SERVICES */
     .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -245,6 +246,7 @@
     .service-tag:hover { border-color: var(--teal); color: var(--teal); }
     .service-tag.selected { border-color: var(--teal-pill); background: rgba(42,161,145,0.08); color: var(--teal); font-weight: 600; }
     .service-tag input[type=checkbox] { display: none; }
+    .service-tag { cursor: pointer; user-select: none; }
 
     /* BUTTONS */
     .btn-primary {
@@ -482,7 +484,7 @@
       </div>
       <div class="services-grid" id="services-container"></div>
       <div style="margin-top:12px">
-        <div class="field"><label>Add a custom service</label><input type="text" id="f-custom-service" placeholder="e.g. Brand Strategy, 3D Modelling..."></div>
+        <div class="field"><label>Add a custom service <span style="font-weight:400;color:#999;font-size:0.78rem;">(press Enter to add)</span></label><input type="text" id="f-custom-service" placeholder="e.g. Brand Strategy, 3D Modelling..."></div>
       </div>
     </div>
 
@@ -543,12 +545,29 @@
   document.addEventListener('DOMContentLoaded', () => {
     // Build services tags
     const c = document.getElementById('services-container');
-    SERVICES.forEach(s => {
-      const tag = document.createElement('label');
+    const buildTag = (s) => {
+      const tag = document.createElement('div');
       tag.className = 'service-tag';
-      tag.innerHTML = `<input type="checkbox" value="${s}"> ${s}`;
+      tag.textContent = s;
+      tag.dataset.value = s;
       tag.addEventListener('click', () => tag.classList.toggle('selected'));
-      c.appendChild(tag);
+      return tag;
+    };
+    SERVICES.forEach(s => c.appendChild(buildTag(s)));
+
+    // Custom service add
+    const customInput = document.getElementById('f-custom-service');
+    customInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const val = customInput.value.trim();
+        if (val) {
+          const tag = buildTag(val);
+          tag.classList.add('selected');
+          c.appendChild(tag);
+          customInput.value = '';
+        }
+      }
     });
 
     // Pre-fill from URL params (passed from calculator)
@@ -556,6 +575,7 @@
     const prefill = (id, val) => { if (val) document.getElementById(id).value = val; };
     prefill('f-hourly',   p.get('hourly'));
     prefill('f-day',      p.get('day'));
+    prefill('f-halfday',  p.get('halfday'));
     prefill('f-retainer', p.get('retainer'));
     prefill('f-location', p.get('location'));
 
@@ -577,7 +597,7 @@
     const match = Object.keys(industryMap).find(k => industry.toLowerCase().includes(k));
     if (match) {
       const label = industryMap[match];
-      document.querySelectorAll('.service-tag').forEach(tag => {
+      document.querySelectorAll('#services-container .service-tag').forEach(tag => {
         if (tag.textContent.trim() === label) tag.classList.add('selected');
       });
     }
@@ -641,7 +661,7 @@
   }
 
   function collectFormData() {
-    const services = [...document.querySelectorAll('.service-tag.selected')].map(el => el.textContent.trim());
+    const services = [...document.querySelectorAll('#services-container .service-tag.selected')].map(el => el.dataset.value || el.textContent.trim());
     const custom = document.getElementById('f-custom-service').value.trim();
     if (custom) services.push(custom);
     return {

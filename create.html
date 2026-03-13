@@ -127,47 +127,172 @@
       display: grid; place-items: center;
       font-size: 0.8rem; font-weight: 800;
       color: white;
+      z-index: 2;
     }
     .template-preview {
-      height: 180px;
+      height: 260px;
       display: grid;
       place-items: center;
       overflow: hidden;
+      position: relative;
     }
     .preview-executive { background: #0d1117; }
-    .preview-clean { background: #f5f7f6; }
+    .preview-clean { background: #f0f4f3; }
     .preview-bold { background: linear-gradient(135deg, #0d1117 50%, #0d9e8a 50%); }
 
-    /* Mini card previews */
-    .mini-card { width: 120px; border-radius: 5px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.35); font-size: 5px; line-height: 1.4; }
-    .mini-exec { background: #0d1117; color: #e6edf3; padding: 7px; }
-    .mini-exec .me-teal { color: #0d9e8a; font-weight: bold; font-size: 6px; }
-    .mini-exec .me-name { font-size: 5.5px; margin: 2px 0; }
-    .mini-exec .me-rate { font-size: 9px; font-weight: bold; color: #0d9e8a; }
-    .mini-exec .me-bar { height: 1.5px; background: #0d9e8a; margin: 3px 0; }
-    .mini-exec .me-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 3px; }
-    .mini-exec .me-cell { font-size: 3.5px; }
-    .mini-exec .me-cell strong { display: block; font-size: 6px; color: #0d9e8a; }
-    .mini-clean { background: white; color: #1a1a1a; padding: 7px; }
-    .mini-clean .mc-name { font-size: 6px; font-weight: bold; }
-    .mini-clean .mc-title { font-size: 3.5px; color: #666; }
-    .mini-clean .mc-rate { font-size: 11px; font-weight: bold; color: #0d9e8a; margin: 2px 0 1px; }
-    .mini-clean .mc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin: 4px 0; border-top: 0.5px solid #eee; padding-top: 3px; }
-    .mini-clean .mc-cell strong { display: block; font-size: 5.5px; color: #0d9e8a; }
-    .mini-clean .mc-cell span { font-size: 3.5px; color: #999; }
-    .mini-bold { display: grid; grid-template-columns: 1fr 1fr; height: 70px; }
-    .mini-bold-left { background: #0d1117; padding: 7px; color: white; }
-    .mini-bold-right { background: #0d9e8a; padding: 7px; color: white; }
-    .mini-bold .mb-name { font-size: 5.5px; font-weight: bold; }
-    .mini-bold .mb-title { font-size: 3.5px; opacity: 0.7; }
-    .mini-bold .mb-rate { font-size: 11px; font-weight: bold; margin: 3px 0 1px; }
-    .mini-bold .mb-label { font-size: 3.5px; opacity: 0.7; }
-    .mini-bold .mb-item { font-size: 3.5px; margin: 2px 0; border-bottom: 0.5px solid rgba(255,255,255,0.15); padding-bottom: 2px; }
-    .mini-bold .mb-item strong { display: block; font-size: 5.5px; }
+    /* Preview button overlay */
+    .preview-btn {
+      position: absolute;
+      bottom: 10px; left: 50%; transform: translateX(-50%);
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 3;
+      white-space: nowrap;
+    }
+    .preview-executive .preview-btn,
+    .preview-bold .preview-btn,
+    .preview-clean .preview-btn { background: var(--teal-pill); border-color: var(--teal-pill); color: white; }
+    .template-card:hover .preview-btn { opacity: 1; }
 
-    .template-info { padding: 14px 16px; }
+    /* Scaled-up mini previews */
+    .mini-card { border-radius: 6px; overflow: hidden; box-shadow: 0 8px 28px rgba(0,0,0,0.4); font-size: 7px; line-height: 1.4; transform: scale(1.9); transform-origin: center center; }
+    .preview-executive .mini-card { box-shadow: 0 0 0 2px rgba(255,255,255,0.5), 0 8px 32px rgba(255,255,255,0.25); }
+    .preview-bold .mini-card { box-shadow: 0 0 0 2px rgba(255,255,255,0.5), 0 8px 32px rgba(255,255,255,0.25); }
+    .preview-clean .mini-card { box-shadow: 0 0 0 2px rgba(0,0,0,0.15), 0 8px 28px rgba(0,0,0,0.4); }
+    .mini-exec { background: #0d1117; color: #e6edf3; padding: 10px; width: 100px; }
+    .mini-exec .me-teal { color: #0d9e8a; font-weight: bold; font-size: 7px; letter-spacing: 0.05em; }
+    .mini-exec .me-name { font-size: 6.5px; margin: 2px 0; }
+    .mini-exec .me-rate { font-size: 14px; font-weight: bold; color: #0d9e8a; margin: 3px 0; }
+    .mini-exec .me-bar { height: 1.5px; background: #0d9e8a; margin: 3px 0; }
+    .mini-exec .me-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-top: 4px; }
+    .mini-exec .me-cell { font-size: 4px; color: #8ba3a0; }
+    .mini-exec .me-cell strong { display: block; font-size: 7px; color: #0d9e8a; }
+    .mini-clean { background: white; color: #1a1a1a; padding: 10px; width: 100px; }
+    .mini-clean .mc-name { font-size: 7.5px; font-weight: bold; }
+    .mini-clean .mc-title { font-size: 4.5px; color: #666; margin-bottom: 3px; }
+    .mini-clean .mc-rate { font-size: 15px; font-weight: bold; color: #0d9e8a; margin: 2px 0; }
+    .mini-clean .mc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px; margin: 5px 0; border-top: 0.5px solid #eee; padding-top: 4px; }
+    .mini-clean .mc-cell strong { display: block; font-size: 6.5px; color: #0d9e8a; }
+    .mini-clean .mc-cell span { font-size: 4px; color: #999; }
+    .mini-bold { display: grid; grid-template-columns: 1fr 1fr; width: 100px; height: 80px; }
+    .mini-bold-left { background: #0d1117; padding: 8px; color: white; }
+    .mini-bold-right { background: #0d9e8a; padding: 8px; color: white; }
+    .mini-bold .mb-name { font-size: 6px; font-weight: bold; }
+    .mini-bold .mb-title { font-size: 4px; opacity: 0.7; }
+    .mini-bold .mb-rate { font-size: 13px; font-weight: bold; margin: 3px 0 1px; }
+    .mini-bold .mb-label { font-size: 4px; opacity: 0.7; }
+    .mini-bold .mb-item { font-size: 4px; margin: 2px 0; border-bottom: 0.5px solid rgba(255,255,255,0.15); padding-bottom: 2px; }
+    .mini-bold .mb-item strong { display: block; font-size: 6.5px; }
+
+    .template-info { padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; }
+    .template-info-left {}
     .template-name { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.92rem; color: var(--dark); margin-bottom: 2px; }
     .template-desc { font-size: 0.78rem; color: var(--muted); }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 1000;
+      place-items: center;
+      backdrop-filter: blur(4px);
+    }
+    .modal-overlay.open { display: grid; }
+    .modal-box {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      max-width: 480px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+      animation: modalIn 0.25s cubic-bezier(0.34,1.56,0.64,1) forwards;
+    }
+    @keyframes modalIn { from { opacity:0; transform:scale(0.92); } to { opacity:1; transform:scale(1); } }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid #eee;
+    }
+    .modal-title { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem; color: var(--dark); }
+    .modal-close {
+      background: #f0f0f0;
+      border: none;
+      border-radius: 50%;
+      width: 30px; height: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      display: grid; place-items: center;
+      color: #666;
+    }
+    .modal-close:hover { background: #e0e0e0; }
+    .modal-preview { width: 100%; }
+    .modal-footer {
+      padding: 16px 20px;
+      display: flex;
+      gap: 10px;
+      border-top: 1px solid #eee;
+    }
+    .btn-select-modal {
+      flex: 1;
+      padding: 11px;
+      background: var(--teal-pill);
+      border: none;
+      border-radius: 10px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: white;
+      cursor: pointer;
+    }
+    .btn-select-modal:hover { opacity: 0.9; }
+
+    /* Full-size modal previews */
+    .full-exec { background: #0d1117; color: #e6edf3; padding: 36px 40px; font-family: 'Inter', sans-serif; }
+    .full-exec .fe-label { color: #0d9e8a; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .full-exec .fe-name { font-size: 1.6rem; font-weight: 700; margin: 6px 0 4px; }
+    .full-exec .fe-title { font-size: 0.82rem; color: #8ba3a0; margin-bottom: 20px; }
+    .full-exec .fe-bar { height: 2px; background: #0d9e8a; margin-bottom: 20px; }
+    .full-exec .fe-rate { font-size: 3.2rem; font-weight: 800; color: #0d9e8a; line-height: 1; }
+    .full-exec .fe-rate-label { font-size: 0.78rem; color: #8ba3a0; margin: 4px 0 24px; }
+    .full-exec .fe-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .full-exec .fe-cell-label { font-size: 0.68rem; color: #8ba3a0; text-transform: uppercase; letter-spacing: 0.06em; }
+    .full-exec .fe-cell-val { font-size: 1.1rem; font-weight: 700; color: #0d9e8a; margin-top: 2px; }
+
+    .full-clean { background: white; color: #1a1a1a; padding: 36px 40px; font-family: 'Inter', sans-serif; }
+    .full-clean .fc-name { font-size: 1.5rem; font-weight: 700; }
+    .full-clean .fc-title { font-size: 0.85rem; color: #666; margin-bottom: 20px; }
+    .full-clean .fc-rate { font-size: 3rem; font-weight: 800; color: #0d9e8a; line-height: 1; }
+    .full-clean .fc-rate-label { font-size: 0.78rem; color: #999; margin: 4px 0 20px; }
+    .full-clean .fc-divider { height: 1px; background: #eee; margin-bottom: 20px; }
+    .full-clean .fc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .full-clean .fc-cell-val { font-size: 1.1rem; font-weight: 700; color: #0d9e8a; }
+    .full-clean .fc-cell-label { font-size: 0.72rem; color: #999; margin-top: 2px; }
+
+    .full-bold { display: grid; grid-template-columns: 1fr 1fr; min-height: 300px; font-family: 'Inter', sans-serif; }
+    .full-bold-left { background: #0d1117; padding: 36px 28px; color: white; }
+    .full-bold-right { background: #0d9e8a; padding: 36px 28px; color: white; }
+    .full-bold .fb-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 2px; }
+    .full-bold .fb-title { font-size: 0.78rem; opacity: 0.65; margin-bottom: 24px; }
+    .full-bold .fb-rate { font-size: 2.8rem; font-weight: 800; line-height: 1; }
+    .full-bold .fb-rate-label { font-size: 0.72rem; opacity: 0.7; margin: 4px 0 24px; }
+    .full-bold .fb-item { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .full-bold .fb-item-val { font-size: 1rem; font-weight: 700; }
+    .full-bold .fb-item-label { font-size: 0.7rem; opacity: 0.65; margin-top: 1px; }
 
     /* WHITE CARD WRAPPER */
     .card {
@@ -382,10 +507,13 @@
               <div class="me-cell"><strong>$580</strong>half day</div>
             </div>
           </div>
+          <button class="preview-btn" onclick="event.stopPropagation(); openPreview('executive-dark')">👁 Preview Sample</button>
         </div>
         <div class="template-info">
-          <div class="template-name">Executive Dark</div>
-          <div class="template-desc">Bold · Professional</div>
+          <div class="template-info-left">
+            <div class="template-name">Executive Dark</div>
+            <div class="template-desc">Bold · Professional</div>
+          </div>
         </div>
       </div>
 
@@ -401,36 +529,42 @@
               <div class="mc-cell"><strong>$2,500</strong><span>min</span></div>
             </div>
           </div>
+          <button class="preview-btn" onclick="event.stopPropagation(); openPreview('clean-minimal')">👁 Preview Sample</button>
         </div>
         <div class="template-info">
-          <div class="template-name">Clean Minimal</div>
-          <div class="template-desc">Light · Editorial</div>
+          <div class="template-info-left">
+            <div class="template-name">Clean Minimal</div>
+            <div class="template-desc">Light · Editorial</div>
+          </div>
         </div>
       </div>
 
       <div class="template-card" data-template="bold-editorial" onclick="selectTemplate(this)">
         <div class="template-preview preview-bold">
-          <div class="mini-card" style="width:120px;height:70px;">
+          <div class="mini-card" style="width:100px;height:80px;">
             <div class="mini-bold">
               <div class="mini-bold-left">
                 <div class="mb-name">Alex Morgan</div>
                 <div class="mb-title">UX Designer</div>
-                <div style="height:5px"></div>
+                <div style="height:6px"></div>
                 <div class="mb-item"><strong>$1,160</strong>day rate</div>
                 <div class="mb-item"><strong>$580</strong>half day</div>
               </div>
               <div class="mini-bold-right">
                 <div class="mb-label">hourly</div>
                 <div class="mb-rate">$145</div>
-                <div style="height:5px"></div>
+                <div style="height:6px"></div>
                 <div class="mb-item"><strong>$2,500</strong>project min</div>
               </div>
             </div>
           </div>
+          <button class="preview-btn" onclick="event.stopPropagation(); openPreview('bold-editorial')">👁 Preview Sample</button>
         </div>
         <div class="template-info">
-          <div class="template-name">Bold Editorial</div>
-          <div class="template-desc">Split · High Impact</div>
+          <div class="template-info-left">
+            <div class="template-name">Bold Editorial</div>
+            <div class="template-desc">Split · High Impact</div>
+          </div>
         </div>
       </div>
     </div>
@@ -442,7 +576,19 @@
     </div>
   </div>
 
-  <!-- PANEL 2: FORM -->
+  <!-- PREVIEW MODAL -->
+  <div class="modal-overlay" id="preview-modal" onclick="closePreview(event)">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title" id="modal-title">Template Preview</div>
+        <button class="modal-close" onclick="document.getElementById('preview-modal').classList.remove('open')">✕</button>
+      </div>
+      <div class="modal-preview" id="modal-preview-content"></div>
+      <div class="modal-footer">
+        <button class="btn-select-modal" id="modal-select-btn">✓ Select this template</button>
+      </div>
+    </div>
+  </div>
   <div class="panel" id="panel2">
     <h1 class="panel-title">Your information</h1>
     <p class="panel-sub">This goes directly onto your rate card PDF.</p>
@@ -616,6 +762,79 @@
     el.classList.add('selected');
     selectedTemplate = el.dataset.template;
     document.getElementById('btn-next1').disabled = false;
+  }
+
+  const PREVIEWS = {
+    'executive-dark': {
+      title: 'Executive Dark',
+      html: `<div class="full-exec">
+        <div class="fe-label">Rate Card</div>
+        <div class="fe-name">Alex Morgan</div>
+        <div class="fe-title">Senior UX Designer & Consultant</div>
+        <div class="fe-bar"></div>
+        <div class="fe-rate">$145</div>
+        <div class="fe-rate-label">minimum hourly rate (USD)</div>
+        <div class="fe-grid">
+          <div><div class="fe-cell-label">Day Rate</div><div class="fe-cell-val">$1,160</div></div>
+          <div><div class="fe-cell-label">Half Day</div><div class="fe-cell-val">$580</div></div>
+          <div><div class="fe-cell-label">Monthly</div><div class="fe-cell-val">$6,800</div></div>
+        </div>
+      </div>`
+    },
+    'clean-minimal': {
+      title: 'Clean Minimal',
+      html: `<div class="full-clean">
+        <div class="fc-name">Alex Morgan</div>
+        <div class="fc-title">Senior UX Designer & Consultant</div>
+        <div class="fc-rate">$145</div>
+        <div class="fc-rate-label">minimum hourly rate (USD)</div>
+        <div class="fc-divider"></div>
+        <div class="fc-grid">
+          <div><div class="fc-cell-val">$1,160</div><div class="fc-cell-label">Day Rate</div></div>
+          <div><div class="fc-cell-val">$580</div><div class="fc-cell-label">Half Day</div></div>
+          <div><div class="fc-cell-val">$6,800</div><div class="fc-cell-label">Retainer</div></div>
+        </div>
+      </div>`
+    },
+    'bold-editorial': {
+      title: 'Bold Editorial',
+      html: `<div class="full-bold">
+        <div class="full-bold-left">
+          <div class="fb-name">Alex Morgan</div>
+          <div class="fb-title">Senior UX Designer</div>
+          <div class="fb-rate">$1,160</div>
+          <div class="fb-rate-label">day rate</div>
+          <div class="fb-item"><div class="fb-item-val">$580</div><div class="fb-item-label">half day</div></div>
+          <div class="fb-item"><div class="fb-item-val">$6,800</div><div class="fb-item-label">monthly retainer</div></div>
+        </div>
+        <div class="full-bold-right">
+          <div class="fb-name" style="opacity:0.7">hourly</div>
+          <div class="fb-rate">$145</div>
+          <div class="fb-rate-label">minimum rate</div>
+          <div class="fb-item"><div class="fb-item-val">$2,500</div><div class="fb-item-label">project minimum</div></div>
+          <div class="fb-item"><div class="fb-item-val">50%</div><div class="fb-item-label">deposit required</div></div>
+        </div>
+      </div>`
+    }
+  };
+
+  function openPreview(templateKey) {
+    const p = PREVIEWS[templateKey];
+    document.getElementById('modal-title').textContent = p.title + ' — Preview';
+    document.getElementById('modal-preview-content').innerHTML = p.html;
+    const btn = document.getElementById('modal-select-btn');
+    btn.onclick = () => {
+      const card = document.querySelector(`.template-card[data-template="${templateKey}"]`);
+      selectTemplate(card);
+      document.getElementById('preview-modal').classList.remove('open');
+    };
+    document.getElementById('preview-modal').classList.add('open');
+  }
+
+  function closePreview(e) {
+    if (e.target === document.getElementById('preview-modal')) {
+      document.getElementById('preview-modal').classList.remove('open');
+    }
   }
 
   function showPanel(n) {

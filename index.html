@@ -1827,9 +1827,10 @@
 <script>
 function goToCreate() {
   const params = new URLSearchParams({
-    hourly:   document.getElementById('heroRate')?.textContent?.replace(/[^0-9.]/g,'') || '',
-    day:      document.getElementById('dayRate')?.textContent?.replace(/[^0-9.]/g,'') || '',
-    retainer: document.getElementById('monthlyRetainer')?.textContent?.replace(/[^0-9.]/g,'') || '',
+    hourly:   (document.getElementById('heroRate')?.textContent || '').replace(/[^0-9.]/g,''),
+    day:      (document.getElementById('dayRate')?.textContent || '').replace(/[^0-9.]/g,''),
+    halfday:  (document.getElementById('halfDayRate')?.textContent || '').replace(/[^0-9.]/g,''),
+    retainer: (document.getElementById('monthlyRetainer')?.textContent || '').replace(/[^0-9.]/g,''),
     location: document.getElementById('cityInput')?.value || '',
     industry: document.getElementById('industry')?.value || '',
   });

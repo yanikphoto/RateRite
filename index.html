@@ -111,6 +111,19 @@
   }
   .logo-dot { display: none; }
 
+  .header-title {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-sub);
+    letter-spacing: 0.01em;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+  @media (max-width: 600px) { .header-title { display: none; } }
+
   .theme-toggle {
     background: var(--card-bg);
     border: 1px solid var(--border);
@@ -1317,6 +1330,7 @@
   <div class="logo">
     <img src="RateRight LOGO-long with text.png" alt="RateRight Logo">
   </div>
+  <div class="header-title">Freelancer &amp; Solopreneur Rate Calculator</div>
   <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
     <span class="theme-icon" id="themeIcon">🌙</span>
     <span id="themeLabel">Dark mode</span>
@@ -1324,7 +1338,7 @@
 </header>
 
 <section class="hero">
-  <div class="hero-badge">✦ Free Calculator · No Sign-Up</div>
+  <div class="hero-badge">✦ Free Rate Calculator · No Sign-Up</div>
   <h1>Know exactly what<br>to <em>charge clients</em></h1>
   <p>Stop guessing your worth. Get your true hourly, day, project, and annual rates — built on real market data in seconds.</p>
 </section>

@@ -167,7 +167,7 @@
 <!-- ══ GOOGLE ADSENSE ══ -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6440126492761756" crossorigin="anonymous"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #050f0d;
@@ -216,7 +216,7 @@
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     background: var(--bg);
     color: var(--text);
     min-height: 100vh;
@@ -274,15 +274,20 @@
   .logo-dot { display: none; }
 
   .header-title {
-    font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--text-sub);
-    letter-spacing: 0.01em;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
+    background: var(--accent-glow);
+    border: 1px solid rgba(0,128,128,0.25);
+    border-radius: 50px;
+    padding: 0.4rem 1.1rem;
   }
   @media (max-width: 600px) { .header-title { display: none; } }
 
@@ -295,7 +300,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.82rem;
     color: var(--text-sub);
     transition: all var(--transition);
@@ -330,7 +335,7 @@
     text-transform: uppercase;
   }
   .hero h1 {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: clamp(2rem, 7vw, 3.2rem);
     font-weight: 800;
     line-height: 1.1;
@@ -377,7 +382,7 @@
   .card:hover { border-color: var(--border-hover); box-shadow: 0 8px 36px rgba(0,0,0,0.09); }
 
   .card-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -414,7 +419,7 @@
     border: 1px solid var(--input-border);
     border-radius: 12px;
     padding: 0.8rem 1rem;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1rem;
     color: var(--text);
     outline: none;
@@ -466,7 +471,7 @@
   .range-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
   .range-header label { margin: 0; }
   .range-value {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 700;
     font-size: 0.95rem;
     color: var(--accent);
@@ -542,7 +547,7 @@
     background: linear-gradient(135deg, var(--accent), var(--accent2));
     border: none;
     border-radius: 14px;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.35rem;
     font-weight: 800;
     color: white;
@@ -593,7 +598,7 @@
     margin-bottom: 0.5rem;
   }
   .results-hero-rate {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: clamp(3rem, 12vw, 4.5rem);
     font-weight: 800;
     color: white;
@@ -633,7 +638,7 @@
     margin-bottom: 0.4rem;
   }
   .rate-card-value {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.5rem;
     font-weight: 800;
     color: var(--text);
@@ -653,7 +658,7 @@
   }
   .breakdown-row:last-child { border-bottom: none; }
   .breakdown-label { color: var(--text-sub); }
-  .breakdown-value { font-weight: 600; font-family: 'Outfit', sans-serif; font-size: 0.9rem; }
+  .breakdown-value { font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9rem; }
   .breakdown-value.negative { color: var(--accent2); }
   .breakdown-value.positive { color: var(--success); }
 
@@ -711,7 +716,7 @@
   .bench-bar-wrap { flex: 2; }
   .bench-bar-track { height: 6px; background: var(--border); border-radius: 3px; }
   .bench-bar-fill { height: 100%; border-radius: 3px; background: var(--accent); opacity: 0.5; }
-  .bench-rate { font-size: 0.83rem; font-weight: 600; font-family: 'Outfit', sans-serif; color: var(--text); width: 52px; text-align: right; }
+  .bench-rate { font-size: 0.83rem; font-weight: 600; font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); width: 52px; text-align: right; }
 
   /* ── TEMPLATE SELECTOR ── */
   .template-selector {
@@ -760,7 +765,7 @@
     border-radius: 0 0 10px 10px;
   }
   .template-name {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.72rem;
     font-weight: 700;
     color: white;
@@ -818,7 +823,7 @@
     margin-bottom: 1rem;
   }
   .upsell-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.35rem;
     font-weight: 800;
     margin-bottom: 0.5rem;
@@ -845,7 +850,7 @@
   .upsell-feature .check { color: var(--success); }
   .upsell-price-row { display: flex; align-items: baseline; gap: 0.4rem; justify-content: center; margin-bottom: 1rem; }
   .upsell-price {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 2.5rem;
     font-weight: 800;
     color: var(--text);
@@ -859,7 +864,7 @@
     background: linear-gradient(135deg, var(--accent), var(--accent2));
     border: none;
     border-radius: 14px;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1rem;
     font-weight: 700;
     color: white;
@@ -901,7 +906,7 @@
     border: 1px solid var(--input-border);
     border-radius: 12px;
     padding: 0.8rem 1rem 0.8rem 2.4rem;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1rem;
     color: var(--text);
     outline: none;
@@ -952,7 +957,7 @@
   .city-option-name { color: var(--text); font-weight: 500; }
   .city-option-region { font-size: 0.72rem; color: var(--text-muted); }
   .city-option-mult {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.75rem;
     font-weight: 700;
     padding: 0.15rem 0.5rem;
@@ -1088,7 +1093,7 @@
   }
   .email-capture-icon { font-size: 2rem; margin-bottom: 0.75rem; }
   .email-capture-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.2rem;
     font-weight: 800;
     letter-spacing: -0.02em;
@@ -1117,7 +1122,7 @@
     border: 1px solid var(--input-border);
     border-radius: 12px;
     padding: 0.8rem 1rem 0.8rem 2.4rem;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.95rem;
     color: var(--text);
     outline: none;
@@ -1140,7 +1145,7 @@
     background: linear-gradient(135deg, var(--accent), var(--accent2));
     border: none;
     border-radius: 12px;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.9rem;
     font-weight: 700;
     color: white;
@@ -1227,7 +1232,7 @@
   .affiliate-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.2rem; }
   .affiliate-desc { font-size: 0.78rem; color: var(--text-muted); }
   .affiliate-cta {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.78rem;
     font-weight: 700;
     color: var(--accent);
@@ -1276,7 +1281,7 @@
     border: 1px solid var(--input-border);
     border-radius: 12px;
     padding: 0.8rem 2.4rem 0.8rem 1rem;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1rem;
     color: var(--text);
     cursor: pointer;
@@ -1369,7 +1374,7 @@
     border: none;
     border-radius: 50px;
     padding: 0.75rem 1.75rem;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1rem;
     font-weight: 800;
     color: #071a14;
@@ -1400,7 +1405,7 @@
     gap: 0.4rem;
     padding: 0.45rem 0.9rem;
     border-radius: 50px;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.78rem;
     font-weight: 600;
     cursor: pointer;
@@ -1439,7 +1444,7 @@
     border: none;
     border-radius: 6px;
     padding: 0.3rem 0.7rem;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.72rem;
     font-weight: 700;
     color: #071a14;
@@ -1455,7 +1460,7 @@
     transform: translateX(-50%) translateY(80px);
     background: var(--accent);
     color: #071a14;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.85rem;
     font-weight: 700;
     padding: 0.7rem 1.4rem;
@@ -1494,7 +1499,7 @@
     padding: 2rem 1rem 3rem;
   }
   .faq-heading {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--text);
@@ -1517,7 +1522,7 @@
   }
   .faq-item:hover { border-color: var(--border-hover); }
   .faq-item summary {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.88rem;
     font-weight: 600;
     color: var(--text);
@@ -1569,7 +1574,7 @@
   <div class="logo">
     <img src="RateRight LOGO-long with text.png" alt="RateRight Logo">
   </div>
-  <div class="header-title">Freelancer &amp; Solopreneur Rate Calculator</div>
+  <div class="header-title">#1 Freelancer &amp; Solopreneur Rate Calculator</div>
   <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
     <span class="theme-icon" id="themeIcon">🌙</span>
     <span id="themeLabel">Dark mode</span>
